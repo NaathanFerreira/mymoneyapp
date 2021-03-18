@@ -2,6 +2,7 @@ import './App.css';
 
 import Header from '../common/template/PageTampltes/Header'
 import SideBar from '../common/template/PageTampltes/SideBar'
+
 import Footer from '../common/template/PageTampltes/Footer';
 
 export default props => {
