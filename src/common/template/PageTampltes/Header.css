@@ -1,0 +1,17 @@
+.logo-lg-alinhada {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-lg-alinhada span {
+    padding-left: .7rem;
+}
+
+.logo-lg-alinhada svg {
+    font-size: 2.8rem;
+}
+
+.sidebar-toggle {
+    cursor: pointer;
+}

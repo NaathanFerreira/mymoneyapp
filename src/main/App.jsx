@@ -1,9 +1,13 @@
 import './App.css';
 
+import Header from '../common/template/PageTampltes/Header'
+import SideBar from '../common/template/PageTampltes/SideBar'
+
 export default props => {
   return (
     <div className="wrapper">
-      <h1> My Money App</h1>
+      <Header/>
+      <SideBar/>
     </div>
   )
 }
