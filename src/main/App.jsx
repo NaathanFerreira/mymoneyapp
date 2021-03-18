@@ -3,17 +3,22 @@ import './App.css';
 import Header from '../common/template/PageTampltes/Header'
 import SideBar from '../common/template/PageTampltes/SideBar'
 
+import { BrowserRouter as Router } from 'react-router-dom'
+
 import Footer from '../common/template/PageTampltes/Footer';
+import Routes from './Routes';
 
 export default props => {
   return (
-    <div className="wrapper">
-      <Header/>
-      <SideBar/>
-      <div className="content-wrapper">
-        <h1>Conteúdo</h1>
+    <Router>
+      <div className="wrapper">
+        <Header />
+        <SideBar />
+        <div className="content-wrapper">
+          <Routes/>
+        </div>
+        <Footer />
       </div>
-      <Footer/>
-    </div>
+    </Router>
   )
 }
