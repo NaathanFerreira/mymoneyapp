@@ -4,12 +4,25 @@ import './index.css';
 import App from './main/App.jsx';
 import reportWebVitals from './reportWebVitals';
 
+import { createStore, applyMiddleware } from 'redux'
+import promise from 'redux-promise'
+import { Provider } from 'react-redux'
+import Reducers from './main/Reducers'
+
+
 import './common/template/dependencies'
 
+// Extensão do chrome
+const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+// middlewares
+const store = applyMiddleware(promise)(createStore)(Reducers, devTools)
+
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <Provider store={store}>
+    <React.StrictMode>
+      <App />
+    </React.StrictMode>
+  </Provider>,
   document.getElementById('root')
 );
 
