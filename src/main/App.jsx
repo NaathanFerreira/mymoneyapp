@@ -2,6 +2,7 @@ import './App.css';
 
 import Header from '../common/template/PageTampltes/Header'
 import SideBar from '../common/template/PageTampltes/SideBar'
+import Messages from '../common/Msg/Messages'
 
 import { BrowserRouter as Router } from 'react-router-dom'
 
@@ -18,6 +19,7 @@ export default props => {
           <Routes/>
         </div>
         <Footer />
+        <Messages />
       </div>
     </Router>
   )
