@@ -11,6 +11,7 @@ import TabContent from '../common/tab/TabContent'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { selectTab, showTabs } from '../common/tab/tabActions'
+import BillingCycleList from './BillingCycleList'
 
 let componentDidMount = true
 
@@ -37,7 +38,7 @@ function BillingCycle(props){
                     </TabsHeader>
                     <TabsContent>
                         <TabContent id="tabList">
-                            <h1>Lista</h1>
+                            <BillingCycleList />
                         </TabContent>
                         <TabContent id="tabCreate">
                             <h1>Incluir</h1>
