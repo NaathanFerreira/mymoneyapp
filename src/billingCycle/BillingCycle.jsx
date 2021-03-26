@@ -13,7 +13,7 @@ import BillingCycleForm from './BillingCycleForm'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { selectTab, showTabs } from '../common/tab/tabActions'
-import { Create } from './BillingCycleActions'
+import { Create, Update } from './BillingCycleActions'
 
 
 let componentDidMount = true
@@ -24,7 +24,6 @@ function BillingCycle(props){
         if(componentDidMount){
             props.selectTab('tabList')
             props.showTabs('tabList', 'tabCreate')
-            componentDidMount = false
         }
     })
 
@@ -47,7 +46,7 @@ function BillingCycle(props){
                             <BillingCycleForm onSubmit={props.Create}/>
                         </TabContent>
                         <TabContent id="tabUpdate">
-                            <h1>Alterar</h1>
+                            <BillingCycleForm onSubmit={props.Update}/>
                         </TabContent>
                         <TabContent id="tabDelete">
                             <h1>Excluir</h1>
@@ -59,6 +58,6 @@ function BillingCycle(props){
     )
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, Create }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, Create, Update }, dispatch)
 
 export default connect(null, mapDispatchToProps)(BillingCycle)

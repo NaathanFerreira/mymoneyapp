@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
 
-import { GetList } from './BillingCycleActions'
+import { GetList, ShowUpdate } from './BillingCycleActions'
 
 let componentDidMount = true
 
@@ -23,6 +23,11 @@ function BillingCycleList(props){
                 <td>{bc.name}</td>
                 <td>{bc.month}</td>
                 <td>{bc.year}</td>
+                <td>
+                    <button className="btn btn-warning" onClick={() => props.ShowUpdate(bc)}> 
+                        <i className="fa fa-pencil"></i>
+                    </button>
+                </td>
             </tr>
         ))
     }
@@ -50,6 +55,6 @@ const mapStateToProps = state => ({
     list: state.billingCycle.list
 })
 
-const mapDispatchToProps = dispatch => bindActionCreators({ GetList }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ GetList, ShowUpdate }, dispatch)
 
 export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleList)

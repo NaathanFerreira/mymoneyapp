@@ -1,6 +1,11 @@
 import React from 'react'
 import { reduxForm, Field } from 'redux-form'
 
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+
+import { Init } from './BillingCycleActions'
+
 import LabelAndInput from '../common/Form/LabelAnInput'
 
 function BillingCycleForm(props){
@@ -20,9 +25,14 @@ function BillingCycleForm(props){
             </div>
             <div className="box-footer">
                 <button type="submit" className="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-danger" onClick={props.Init}> Cancelar </button>
             </div>
         </form>
     )
 }
 
-export default reduxForm({form: 'billingCycleForm'})(BillingCycleForm)
+const mapDispatchToProps = dispatch => bindActionCreators({ Init }, dispatch)
+
+BillingCycleForm = reduxForm({form: 'billingCycleForm', destroyOnUnmount: false})(BillingCycleForm)
+// destroyOnUnmount: como o form será re-utilizado em lugares diferentes (incluir, alterar e excluir), ele não pode destruir os dados ao inicializar
+export default connect(null, mapDispatchToProps)(BillingCycleForm)

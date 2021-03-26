@@ -1,10 +1,12 @@
 import axios from 'axios'
 import { toastr } from 'react-redux-toastr'
-import { reset as resetForm } from 'redux-form'
+import { reset as resetForm, initialize } from 'redux-form'
 
 import { showTabs, selectTab } from '../common/tab/tabActions'
 
 const BASE_URL = 'http://localhost:3003/api'
+
+const INITIAL_VALUES = {}
 
 export function GetList() {
     const request = axios.get(`${BASE_URL}/billingCycles`)
@@ -15,21 +17,43 @@ export function GetList() {
 }
 
 export function Create(values) {
+    return Submit(values, 'post')
+}
+
+export function Update(values) {
+    return Submit(values, 'put')
+}
+
+function Submit(values, method) {
     // redux thunk
     return dispatch => {
-        axios.post(`${BASE_URL}/billingCycles`, values)
+        const id = values._id ? values._id : ''
+        axios[method](`${BASE_URL}/billingCycles/${id}`, values)
             .then(resp => {
                 toastr.success("Sucesso", "Operação realizada com sucesso.")
-                dispatch([
-                    resetForm('billingCycleForm'),
-                    GetList(),
-                    selectTab('tabList'),
-                    showTabs('tabList', 'tabCreate')
-                ])
+                dispatch(Init())
             })
             .catch(e => {
                 // errors é um array que foi definido no backend
                 e.response.data.errors.forEach(error => toastr.error('Erro', error))
             })
     }
+}
+
+export function ShowUpdate(billingCycle) {
+    return [
+        showTabs('tabUpdate'),
+        selectTab('tabUpdate'),
+        initialize('billingCycleForm', billingCycle)
+    ]
+}
+
+// inicializa o componente billingcycle, limpa o form
+export function Init() {
+    return [
+        showTabs('tabList', 'tabCreate'),
+        selectTab('tabList'),
+        GetList(),
+        initialize('billingCycleForm', INITIAL_VALUES)
+    ]
 }
