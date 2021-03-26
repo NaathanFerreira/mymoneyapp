@@ -43,13 +43,16 @@ function BillingCycle(props){
                             <BillingCycleList />
                         </TabContent>
                         <TabContent id="tabCreate">
-                            <BillingCycleForm onSubmit={props.Create}/>
+                            <BillingCycleForm onSubmit={props.Create} 
+                                btnSubmitClass='primary' submitLabel='Incluir'/>
                         </TabContent>
                         <TabContent id="tabUpdate">
-                            <BillingCycleForm onSubmit={props.Update}/>
+                            <BillingCycleForm onSubmit={props.Update}
+                                btnSubmitClass='success' submitLabel='Alterar'/>
                         </TabContent>
                         <TabContent id="tabDelete">
-                            <BillingCycleForm onSubmit={props.Delete} readOnly='true'/>
+                            <BillingCycleForm onSubmit={props.Delete} readOnly='true'
+                                btnSubmitClass='danger' submitLabel='Excluir'/>
                         </TabContent>
                     </TabsContent>
                 </Tabs>

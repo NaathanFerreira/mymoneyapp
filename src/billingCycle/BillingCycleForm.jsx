@@ -24,8 +24,10 @@ function BillingCycleForm(props){
                     type="number" label="Ano" cols="12 4" placeholder="Informe o ano..." readOnly={props.readOnly}/>
             </div>
             <div className="box-footer">
-                <button type="submit" className="btn btn-primary">Submit</button>
-                <button type="button" class="btn btn-danger" onClick={props.Init}> Cancelar </button>
+                <button type="submit" className={`btn btn-${props.btnSubmitClass}`}>
+                    {props.submitLabel}
+                </button>
+                <button type="button" class="btn btn-secondary" onClick={props.Init}> Cancelar </button>
             </div>
         </form>
     )
