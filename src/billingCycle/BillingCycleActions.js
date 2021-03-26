@@ -24,6 +24,10 @@ export function Update(values) {
     return Submit(values, 'put')
 }
 
+export function Delete(values){
+    return Submit(values, 'delete')
+}
+
 function Submit(values, method) {
     // redux thunk
     return dispatch => {
@@ -47,6 +51,15 @@ export function ShowUpdate(billingCycle) {
         initialize('billingCycleForm', billingCycle)
     ]
 }
+
+export function ShowDelete(billingCycle) {
+    return [
+        showTabs('tabDelete'),
+        selectTab('tabDelete'),
+        initialize('billingCycleForm', billingCycle)
+    ]
+}
+
 
 // inicializa o componente billingcycle, limpa o form
 export function Init() {

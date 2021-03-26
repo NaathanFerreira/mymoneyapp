@@ -13,7 +13,7 @@ import BillingCycleForm from './BillingCycleForm'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 import { selectTab, showTabs } from '../common/tab/tabActions'
-import { Create, Update } from './BillingCycleActions'
+import { Create, Update, Delete } from './BillingCycleActions'
 
 
 let componentDidMount = true
@@ -49,7 +49,7 @@ function BillingCycle(props){
                             <BillingCycleForm onSubmit={props.Update}/>
                         </TabContent>
                         <TabContent id="tabDelete">
-                            <h1>Excluir</h1>
+                            <BillingCycleForm onSubmit={props.Delete} readOnly='true'/>
                         </TabContent>
                     </TabsContent>
                 </Tabs>
@@ -58,6 +58,6 @@ function BillingCycle(props){
     )
 }
 
-const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, Create, Update }, dispatch)
+const mapDispatchToProps = dispatch => bindActionCreators({ selectTab, showTabs, Create, Update, Delete }, dispatch)
 
 export default connect(null, mapDispatchToProps)(BillingCycle)
