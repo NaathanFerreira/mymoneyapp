@@ -8,8 +8,19 @@ import { Init } from './BillingCycleActions'
 
 import LabelAndInput from '../common/Form/LabelAnInput'
 import ItemList from './ItemList'
+import Summary from './Summary'
 
 function BillingCycleForm(props) {
+
+    function CalculateSummary(){
+        const sum = (t, v) => t + v
+        return {
+            sumOfCredits: props.credits.map(c => +c.value || 0).reduce(sum, 0),
+            sumOfDebts: props.debts.map(d => +d.value || 0).reduce(sum, 0)
+        }
+    }
+
+    const { sumOfCredits, sumOfDebts} = CalculateSummary()
 
     // função própria do reduxForm
     const { handleSubmit } = props
@@ -23,6 +34,7 @@ function BillingCycleForm(props) {
                     type="number" label="Mês" cols="12 4" placeholder="Informe o mês..." readOnly={props.readOnly} />
                 <Field name="year" component={LabelAndInput}
                     type="number" label="Ano" cols="12 4" placeholder="Informe o ano..." readOnly={props.readOnly} />
+                <Summary credit={sumOfCredits} debt={sumOfDebts} />
                 <ItemList cols="12 6 " readOnly={props.readOnly} list={props.credits}
                     field="credits" legend="Créditos" />
                 <ItemList cols="12 6 " readOnly={props.readOnly} list={props.debts}
