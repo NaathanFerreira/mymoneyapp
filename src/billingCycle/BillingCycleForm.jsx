@@ -1,5 +1,5 @@
 import React from 'react'
-import { reduxForm, Field } from 'redux-form'
+import { reduxForm, Field, formValueSelector } from 'redux-form'
 
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux'
 import { Init } from './BillingCycleActions'
 
 import LabelAndInput from '../common/Form/LabelAnInput'
+import CreditList from './CreditList'
 
 function BillingCycleForm(props){
 
@@ -22,6 +23,7 @@ function BillingCycleForm(props){
                     type="number" label="Mês" cols="12 4" placeholder="Informe o mês..." readOnly={props.readOnly}/>
                 <Field name="year" component={LabelAndInput} 
                     type="number" label="Ano" cols="12 4" placeholder="Informe o ano..." readOnly={props.readOnly}/>
+                <CreditList cols="12 6 " readOnly={props.readOnly} list={props.credits}/>
             </div>
             <div className="box-footer">
                 <button type="submit" className={`btn btn-${props.btnSubmitClass}`}>
@@ -35,6 +37,13 @@ function BillingCycleForm(props){
 
 const mapDispatchToProps = dispatch => bindActionCreators({ Init }, dispatch)
 
+// pega os valores que estão no estado do form (valores que foram passados ao inicializar o form na action)
+const selector = formValueSelector('billingCycleForm')
+
+const mapStateToProps = state => ({
+    credits: selector(state, 'credits')
+})
+
 BillingCycleForm = reduxForm({form: 'billingCycleForm', destroyOnUnmount: false})(BillingCycleForm)
 // destroyOnUnmount: como o form será re-utilizado em lugares diferentes (incluir, alterar e excluir), ele não pode destruir os dados ao inicializar
-export default connect(null, mapDispatchToProps)(BillingCycleForm)
+export default connect(mapStateToProps, mapDispatchToProps)(BillingCycleForm)
