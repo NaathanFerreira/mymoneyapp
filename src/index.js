@@ -1,8 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './main/App.jsx';
 import reportWebVitals from './reportWebVitals';
+
+import AuthOrApp from './main/AuthOrApp'
 
 import { createStore, applyMiddleware } from 'redux'
 import promise from 'redux-promise'
@@ -12,8 +13,6 @@ import thunk from 'redux-thunk'
 import Reducers from './main/Reducers'
 
 
-import './common/template/dependencies'
-
 // Extensão do chrome
 const devTools = window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 // middlewares
@@ -22,7 +21,7 @@ const store = applyMiddleware(multi, thunk, promise)(createStore)(Reducers, devT
 ReactDOM.render(
   <Provider store={store}>
     <React.StrictMode>
-      <App />
+    <AuthOrApp />
     </React.StrictMode>
   </Provider>,
   document.getElementById('root')

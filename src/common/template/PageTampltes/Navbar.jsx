@@ -34,7 +34,7 @@ function Navbar(props) {
                         </li>
                         <li className="user-footer">
                             <div className="pull-right">
-                                <a href="#" onClick={props.logout}
+                                <a href="" onClick={props.logout}
                                     className="btn btn-default btn-flat">Sair</a>
                             </div>
                         </li>

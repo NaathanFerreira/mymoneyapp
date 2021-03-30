@@ -1,6 +1,6 @@
 const userKey = "_mymoner_user"
 const INITIAL_STATE = {
-    user: {name: "Nathan", email: "nathan@hotmail.com"},//JSON.parser(localStorage.getItem(userKey)),
+    user: JSON.parse(localStorage.getItem(userKey)),
     validToken: false
 }
 

@@ -6,7 +6,7 @@ export function login(values){
     return submit(values, `${consts.OAPI_URL}/login`)
 }
 
-export function singup(values){
+export function signup(values){
     return submit(values, `${consts.OAPI_URL}/signup`)
 }
 
